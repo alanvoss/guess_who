@@ -1,0 +1,158 @@
+-----
+  hair style:
+    hair partition:
+      - Alfred
+      - Anita
+      - Charles
+      - Peter
+      - Robert
+      - Susan
+    curly hair:
+      - Anne
+      - Frans
+      - Herman
+      - Joe
+      - Max
+      - Philip
+    hat:
+      - Bernard
+      - Claire
+      - Eric
+      - George
+      - Maria
+    bald:
+      - Bill
+      - Herman
+      - Richard
+      - Sam
+      - Tom
+    hair stuff:
+      - Anita
+      - Bernard
+      - Claire
+      - George
+      - Maria
+    long hair:
+      - Alfred
+      - Anita
+      - Maria
+      - Susan
+  hair color: &hair_color
+    ginger hair: &ginger_hair
+      - Alfred
+      - Bill
+      - Claire
+      - Frans
+      - Herman
+    red hair: *ginger_hair
+    white hair:
+      - George
+      - Paul
+      - Peter
+      - Sam
+      - Susan
+    brown hair:
+      - Bernard
+      - Maria
+      - Max
+      - Richard
+      - Robert
+    blond hair: &blond_hair
+      - Anita
+      - Charles
+      - David
+      - Eric
+      - Joe
+    blonde hair: *blond_hair
+    black hair:
+      - Alex
+      - Anne
+      - Philip
+      - Tom
+  hair colour: *hair_color
+  facial attributes:
+    big mouth:
+      - Alex
+      - Charles
+      - David
+      - Eric
+      - George
+      - Max
+      - Peter
+      - Philip
+      - Robert
+      - Susan
+    big nose:
+      - Bernard
+      - Herman
+      - Max
+      - Peter
+      - Robert
+    red cheeks:
+      - Anita
+      - Bill
+      - Philip
+      - Robert
+      - Susan
+    blue eyes:
+      - Alfred
+      - Anita
+      - Peter
+      - Robert
+      - Tom
+    sad looking:
+      - Alfred
+      - Bernard
+      - George
+      - Robert
+  facial hair:
+    mustache: &mustache
+      - Alex
+      - Alfred
+      - Charles
+      - Max
+      - Richard
+    moustache: *mustache
+    beard:
+      - Bill
+      - David
+      - Philip
+      - Richard
+  gender:
+    male:
+      - Alex
+      - Alfred
+      - Bernard
+      - Bill
+      - Charles
+      - David
+      - Eric
+      - Frans
+      - George
+      - Herman
+      - Joe
+      - Max
+      - Paul
+      - Peter
+      - Philip
+      - Richard
+      - Robert
+      - Sam
+      - Tom
+    female:
+      - Anita
+      - Anne
+      - Claire
+      - Maria
+      - Susan
+  accessories:
+    glasses:
+      - Claire
+      - Joe
+      - Paul
+      - Sam
+      - Tom
+    earrings: &earrings
+      - Anne
+      - Maria
+    ear rings: *earrings
