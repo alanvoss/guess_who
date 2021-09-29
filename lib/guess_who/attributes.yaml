@@ -1,4 +1,3 @@
------
   hair style:
     hair partition:
       - Alfred
@@ -37,14 +36,14 @@
       - Anita
       - Maria
       - Susan
-  hair color: &hair_color
-    ginger hair: &ginger_hair
+  hair color: &haircolor
+    ginger hair: &gingerhair
       - Alfred
       - Bill
       - Claire
       - Frans
       - Herman
-    red hair: *ginger_hair
+    red hair: *gingerhair
     white hair:
       - George
       - Paul
@@ -57,19 +56,19 @@
       - Max
       - Richard
       - Robert
-    blond hair: &blond_hair
+    blond hair: &blondhair
       - Anita
       - Charles
       - David
       - Eric
       - Joe
-    blonde hair: *blond_hair
+    blonde hair: *blondhair
     black hair:
       - Alex
       - Anne
       - Philip
       - Tom
-  hair colour: *hair_color
+  hair colour: *haircolor
   facial attributes:
     big mouth:
       - Alex
