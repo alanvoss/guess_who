@@ -11,8 +11,10 @@ defmodule GuessWho.Contenders.Examples.Random do
 
   @behaviour GuessWho.Contender
 
+  @impl GuessWho.Contender
   def name(), do: "Random (Example Contender)"
 
+  @impl GuessWho.Contender
   def turn(_response, state) do
     characters = remaining_characters(state)
     next_guess = Enum.random(characters)
