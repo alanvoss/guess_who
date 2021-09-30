@@ -1,9 +1,19 @@
 defmodule GuessWho.Attributes do
+  @attributes_config_file "lib/guess_who/attributes.yaml"
+  # e.g. "Alfred", see bottom-level list values of @attributes_config_file
   @type character() :: binary()
+
+  # e.g. "red cheeks", ignoring higher-level groupings (which are ignored by
+  # this module, and only used to make browsing potentially faster in the YAML
+  # itself), see parent keys of the characters in the @attributes_config_file
   @type attribute() :: binary()
 
+  @type character_query() :: Regex.t() | character() | attribute()
+  @type query_response_type() :: :name_looks_like? | :name_guessed? | :has_attribute?
+  @type query_response() :: {query_response_type(), boolean()} | :invalid_character
+
   {:ok, config} = File.cwd!()
-           |> Path.join("lib/guess_who/attributes.yaml")
+           |> Path.join(@attributes_config_file)
            |> YamlElixir.read_from_file()
 
   @attribute_characters config
@@ -50,7 +60,7 @@ defmodule GuessWho.Attributes do
     Map.get(@attribute_characters, attribute, [])
   end
 
-  @spec character_matches?(character(), Regex.t() | character() | attribute()) :: {:name_looks_like? | :name_guessed? | :has_attribute?, boolean()} | :invalid_character
+  @spec character_matches?(character(), character_query()) :: query_response()
   def character_matches?(character, query) do
     if Map.has_key?(@character_attributes, character) do
       matches?(character, query)
