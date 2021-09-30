@@ -32,6 +32,11 @@ defmodule GuessWho.Contender do
               nil | state()
             ) :: {GuessWho.Attributes.character_query(), state()}
 
+  @spec new(Atom.t()) :: GuessWho.Contender.t()
+  def new(module) do
+    %__MODULE__{name: module.name(), module: module}
+  end
+
   @spec all_player_modules() :: [Atom.t()]
   def all_player_modules() do
     {:ok, modules} = :application.get_key(:guess_who, :modules)
