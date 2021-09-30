@@ -13,17 +13,20 @@ defmodule GuessWho.ContendersTest do
 
     test "all contenders successfully initialize with call to turn(nil, nil)" do
       for contender <- Contender.all_player_modules() do
-        {query, _state} = contender.turn(nil, nil)
+        # Just Awful gets a pass, as it is intentionally giving an incorrect query.
+        if contender.name != "Just Awful (Example Contender)" do
+          {query, _state} = contender.turn(nil, nil)
 
-        sane_query =
-          cond do
-            is_struct(query, Regex) -> true
-            query in Attributes.characters() -> true
-            query  in Attributes.attributes() -> true
-            true -> false
-          end
+          sane_query =
+            cond do
+              is_struct(query, Regex) -> true
+              query in Attributes.characters() -> true
+              query  in Attributes.attributes() -> true
+              true -> false
+            end
 
-        assert sane_query
+          assert sane_query
+        end
       end
     end
   end
