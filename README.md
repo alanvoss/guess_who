@@ -49,7 +49,7 @@ The second indentation in the file are the attributes that can be used.  Example
 - `sad looking`
 - `male`
 
-With the exeption of `gender`, the characteristics are only listed for the minority group.
+With the exception of `gender`, the characteristics are only listed for the minority group.
 In other words, some characters have brown eyes, while others have blue, but since brown
 eyes are the majority, and are least specific, only `blue eyes` are listed.  If you wanted
 to get brown eyes, you would ask for `blue eyes`, and if you received an answer of
