@@ -11,9 +11,9 @@ Each player draws a card representing one of the characters, and keeps that card
 
 The players then alternate attempting to either narrow down or guess the character that their
 opponent has chosen and hidden.  They can narrow down by asking a question that has only a 
-"yes" or "no" response.  They can guess by asking, "Is it Philip?" 
+"yes" or "no" response.
 
-For narrowing down, players can for example ask:
+For narrowing down or guessing a name, players can ask:
 
 - a part of the name
   - "Does the character's name start with the letter 'S'?"
@@ -21,10 +21,9 @@ For narrowing down, players can for example ask:
   - "Does the character have blue eyes?"
   - "Does the character have a moustache?"
   - "Is the character female?"
-- a combination of characteristics
-  - "Does the player have both curly hair and black hair?"
+- a player name
 
-Players must wait until their following turn to guess a character, even if they have it
+Players must wait until their following turn to guess a character's name, even if they have it
 narrowed down to a single remaining character at the end of their turn.
 
 The first to guess the name on the hidden card that their opponent holds is the winner.
@@ -32,8 +31,8 @@ The first to guess the name on the hidden card that their opponent holds is the 
 ## Our Variation
 
 Instead of 2 contenders playing against each other, you will be given an opportunity to try
-to guess all 24 of the characters, one at a time, and your cululative number of guesses
-will be used to score your contender.
+to guess all 24 of the characters in the fewest possible queries, one at a time, and the
+cululative number of guesses will be used to score your contender.
 
 Attempting to minimize that score as much as possible is the goal.
 
@@ -52,7 +51,7 @@ With the exeption of `gender`, the characteristics are only listed for the minor
 In other words, some characters have brown eyes, while others have blue, but since brown
 eyes are the majority, and are least specific, only `blue eyes` are listed.  If you wanted
 to get brown eyes, you would ask for `blue eyes`, and if you received an answer of
-`{:has_attribute, false}`, you'll know the eyes are brown.  This is to help you narrow
+`{:has_attribute?, false}`, you'll know the eyes are brown.  This is to help you narrow
 down your characters more quickly.
 
 Under each attribute is a list of names that have that attribute.
@@ -70,25 +69,25 @@ certain attribute.  Most of your bot coding will most likely use the helpers in 
   - in this directory [lib/guess_who/contenders/](lib/guess_who/contenders/)
 - implement: `@behaviour GuessWho.Contender` (specifically `name/0` and `turn/2`)
   - `name/0` should return a unique and deterministic contender name
-  - `turn/2` is the callback where you are given the previous guess's `response` and `state`,
+  - `turn/2` is the callback where you are given the previous query's `response` and `state`,
     in the form of a tuple, and where you will return a tuple with a `query` and a new `state`.
     - your `response` will be a tuple whose:
       - first element is one of:
-        - `nil` on first guess
-        - `:name_looks_like?` for any regex name match guess
-        - `:has_attribute?` for questioning whether a character has a certain attribute
-        - NOTE: `:name_guessed?` will never be returned, as the engine uses
-          that response internally to know when to end guessing and record a score.
-      - second element is:
+        - `nil` on first turn 
+        - `:name_looks_like?` for a previously-submitted name match query
+        - `:has_attribute?` for a previous query as to whether a character has a certain attribute
+        - NOTE: `:name_guessed?` will never be returned, as the engine uses that response
+          internally to know when to end querying and record a score.
+      - second element gives the engine response to that query type:
         - a boolean `true` or `false`
     - your `state` is any information you passed from your previous turn.
     - example: `{:has_attribute?, true}`
     - you will then return a tuple whose:
-      - first element is one of:
+      - first element `query` is one of:
         - an [attribute](lib/guess_who/attributes.yaml), such as `blue eyes` (binary)
         - a regex to match against the character's name, such as `~r/^A/`
         - a name guess (must include the capital letter), such as `Maria`
-      - second element is:
+      - second element `state` is:
         - any state information you'd like passed back to you on the next turn
 - run `mix test` in the root directory of the project to make sure your bot passes some
   basic sanity testing.
@@ -104,6 +103,10 @@ certain attribute.  Most of your bot coding will most likely use the helpers in 
     - `mix score <<contender module>>`
   - scores all contenders, including the example contenders
     - `mix score_all`
+- commit your work locally and push to github
+- submit a pull request by going to [GuessWho](https://github.com/alanvoss/guess_who) and
+  finding the link at the top.
+- have fun!
 
 ## Example Contenders
 
