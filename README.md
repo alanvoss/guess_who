@@ -28,11 +28,13 @@ narrowed down to a single remaining character at the end of their turn.
 
 The first to guess the name on the hidden card that their opponent holds is the winner.
 
+[Video tutorial](https://www.youtube.com/watch?v=a76UPzU2VXM)
+
 ## Our Variation
 
 Instead of 2 contenders playing against each other, you will be given an opportunity to try
 to guess all 24 of the characters in the fewest possible queries, one at a time, and the
-cululative number of guesses will be used to score your contender.
+cumulative number of guesses will be used to score your contender.
 
 Attempting to minimize that score as much as possible is the goal.
 
@@ -70,8 +72,8 @@ certain attribute.  Most of your bot coding will most likely use the helpers in 
 - implement: `@behaviour GuessWho.Contender` (specifically `name/0` and `turn/2`)
   - `name/0` should return a unique and deterministic contender name
   - `turn/2` is the callback where you are given the previous query's `response` and `state`,
-    in the form of a tuple, and where you will return a tuple with a `query` and a new `state`.
-    - your `response` will be a tuple whose:
+    and where you will return a tuple with a `query` and a new `state`.
+    - your first argument `response` will be a tuple whose:
       - first element is one of:
         - `nil` on first turn 
         - `:name_looks_like?` for a previously-submitted name match query
@@ -80,7 +82,7 @@ certain attribute.  Most of your bot coding will most likely use the helpers in 
           internally to know when to end querying and record a score.
       - second element gives the engine response to that query type:
         - a boolean `true` or `false`
-    - your `state` is any information you passed from your previous turn.
+    - your second argument `state` is any information you passed from your previous turn.
     - example: `{:has_attribute?, true}`
     - you will then return a tuple whose:
       - first element `query` is one of:
@@ -114,4 +116,4 @@ Check out [lib/guess_who/contenders/examples](lib/guess_who/contenders/examples/
 
 ## Extra Credit
 
-Make an additional bot that does not use the regex / name match functionality.
+Make an additional bot that does not use the regex functionality.
