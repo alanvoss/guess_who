@@ -91,6 +91,8 @@ certain attribute.  Most of your bot coding will most likely use the helpers in 
         - a name guess (must include the capital letter), such as `Maria`
       - second element `state` is:
         - any state information you'd like passed back to you on the next turn
+- you must guess a character name in 50 turns or less, otherwise you forfeit guessing that
+  character.
 - run `mix test` in the root directory of the project to make sure your bot passes some
   basic sanity testing.
 - some mix tasks to help test your code (example usage using `mix help`):
