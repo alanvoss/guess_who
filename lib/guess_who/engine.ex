@@ -19,7 +19,7 @@ defmodule GuessWho.Engine do
 
   @spec score_contender(Contender.t() | Atom.t()) :: {[Game.t()], %{Attribute.character() => Integer.t()}, Integer.t()}
   def score_contender(contender) do
-    contender = get_contender_if_module(contender)
+    contender = get_contender(contender)
     game_logs = match_contender_against_all_characters(contender)
 
     per_character_score =
@@ -37,13 +37,13 @@ defmodule GuessWho.Engine do
 
   @spec match_contender_against_all_characters(Contender.t() | Atom.t()) :: [Game.t()]
   def match_contender_against_all_characters(contender) do
-    contender = get_contender_if_module(contender)
+    contender = get_contender(contender)
     Enum.map(Attributes.characters(), &start_game(contender, &1))
   end
 
   @spec start_game(Contender.t() | Atom.t(), Attributes.character()) :: Game.t()
   def start_game(contender, character) do
-    contender = get_contender_if_module(contender)
+    contender = get_contender(contender)
     {outcome, turns} = do_turns(contender, character, [], 0)
     Game.new(contender, character, Enum.reverse(turns), outcome)
   end
@@ -68,6 +68,10 @@ defmodule GuessWho.Engine do
     do_turns(contender, character, [Turn.new(query, response, state) | turns], count + 1)
   end
 
-  defp get_contender_if_module(%Contender{} = contender), do: contender
-  defp get_contender_if_module(contender), do: Contender.new(contender)
+  defp get_contender(%Contender{} = contender), do: contender
+  defp get_contender(contender) when is_atom(contender), do: Contender.new(contender)
+  defp get_contender("Elixir." <> _contender = module_string) do
+    module_string |> String.to_atom() |> get_contender()
+  end
+  defp get_contender(contender), do: get_contender("Elixir." <> contender)
 end
