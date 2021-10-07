@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Score do
   Example usage:
     `mix score --total GuessWho.Contenders.Examples.BlueEyes`
     `mix score --per-character GuessWho.Contenders.Examples.Random`
-    `mix score --logs GuessWho.Contenders.Examples.FirstLetter`
+    `mix score --logs GuessWho.Contenders.Examples.FiveLetters`
     `mix score GuessWho.Contenders.Examples.Alphabetical`
   """
 

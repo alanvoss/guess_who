@@ -51,7 +51,7 @@ defmodule GuessWho.EngineTest do
     end
 
     test "returns 24 scores, one for each character" do
-      assert {_, per_character_score, _} = Engine.score_contender(GuessWho.Contenders.Examples.FirstLetter)
+      assert {_, per_character_score, _} = Engine.score_contender(GuessWho.Contenders.Examples.FiveLetters)
 
       scores = Map.values(per_character_score)
       assert length(scores) == 24
