@@ -21,7 +21,7 @@ For narrowing down or guessing a name, players can ask:
   - "Does the character have blue eyes?"
   - "Does the character have a moustache?"
   - "Is the character female?"
-- a player name
+- a character name
 
 Players must wait until their following turn to guess a character's name, even if they have it
 narrowed down to a single remaining character at the end of their turn.
