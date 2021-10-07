@@ -7,15 +7,15 @@ defmodule GuessWho.Contenders.Examples.FiveLetters do
 
     If the character has five or more letters (15 out of 24 characters):
     Worst performance: 1 (determination of five or more letters) + 15 (number of characters with five or more letters) = 16 guesses
-    Average performance: 1 (determination of five or more letters) + 8 (median number of characters with five or more letters) = 9 guesses
+    Median performance: 1 (determination of five or more letters) + 8 (median number of characters with five or more letters) = 9 guesses
 
     If the character has fewer than five letters (9 out of 24 characters):
     Worst performance: 1 (determination of fewer than five letters) + 9 (number of characters with fewer than five letters) = 16 guesses
-    Average performance: 1 (determination of fewer than five letters) + 5 (median number of characters with fewer than five letters) = 6 guesses
+    Median performance: 1 (determination of fewer than five letters) + 5 (median number of characters with fewer than five letters) = 6 guesses
 
     Overall:
     Worst performance: 16 guesses
-    Average performance: 15/24 * 9 + 9/24 * 6 = 7.875
+    Median performance: 15/24 * 9 + 9/24 * 6 = 7.875
   """
 
   alias GuessWho.Attributes

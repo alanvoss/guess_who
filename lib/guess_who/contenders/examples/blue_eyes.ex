@@ -9,15 +9,15 @@ defmodule GuessWho.Contenders.Examples.BlueEyes do
 
     If the character has blue eyes (5 out of 24 characters):
     Worst performance: 1 (determination of blue eyes) + 5 (number of blue eyed characters) = 6 guesses
-    Average performance: 1 (determination of blue eyes) + 3 (median number of blue eyed characters) = 4 guesses
+    Median performance: 1 (determination of blue eyes) + 3 (median number of blue eyed characters) = 4 guesses
 
     If the character doesn't have blue eyes (19 out of 24 characters):
     Worst performance: 1 (determination of not blue eyes) + 19 (number of non-blue eyed characters) = 20 guesses
-    Average performance: 1 (determination of not blue eyes) + 10 (median number of non-blue eyed characters) = 11 guesses
+    Median performance: 1 (determination of not blue eyes) + 10 (median number of non-blue eyed characters) = 11 guesses
 
     Overall:
     Worst performance: 20 guesses
-    Average performance: 5/24 * 4 + 19/24 * 11 = 9.54 guesses
+    Median performance: 5/24 * 4 + 19/24 * 11 = 9.54 guesses
   """
 
   alias GuessWho.Attributes

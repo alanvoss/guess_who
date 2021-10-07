@@ -6,7 +6,7 @@ defmodule GuessWho.Contenders.Examples.Random do
     in random order.
 
     Worst performance: 24 tries
-    Average performance: 12 tries
+    Median performance: 12 tries
   """
 
   @behaviour GuessWho.Contender
