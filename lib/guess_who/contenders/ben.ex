@@ -22,22 +22,19 @@ defmodule GuessWho.Contenders.Ben do
     |> guess()
   end
 
-  # Final turn: We had two options last turn and guessed one of them - it was wrong - guess the other
-  def turn({:name_guessed?, false}, name), do: {name, nil}
+  # Final turns: We had two or three options last turn and guessed one of them - it was wrong - guess another
+  def turn({:name_guessed?, false}, {name, names}), do: guess(names -- [name])
 
-  # There are two options left - guess one of them and save the other one to guess next time
-  defp guess([a, b]), do: {a, b}
-
-  # There's only one option left - guess it
-  defp guess([name]), do: {name, nil}
-
-  # There's many options left - generate a regex that matches half of them and submit that
+  # Generate a regex that matches half of the remaining options and submit that
+  # If "half" can be reasonably interpretted as a single name, directly guess that name instead of submitting a regex
   defp guess(chars) do
     r = regex_matching_everything_in(half_list(chars))
     {r, {r, chars}}
   end
 
+  defp regex_matching_everything_in([name]), do: name
   defp regex_matching_everything_in(list), do: Regex.compile!("^(#{Enum.join(list, "|")})$")
 
-  defp half_list(list), do: Enum.take(list, round(length(list) / 2))
+  defp half_list([name]), do: [name]
+  defp half_list(list), do: Enum.take(list, trunc(length(list) / 2))
 end
