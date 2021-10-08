@@ -12,9 +12,10 @@ defmodule GuessWho.Attributes do
   @type query_response_type() :: :name_looks_like? | :name_guessed? | :has_attribute?
   @type query_response() :: {query_response_type(), boolean()} | :invalid_character
 
-  {:ok, config} = File.cwd!()
-           |> Path.join(@attributes_config_file)
-           |> YamlElixir.read_from_file()
+  {:ok, config} =
+    File.cwd!()
+    |> Path.join(@attributes_config_file)
+    |> YamlElixir.read_from_file()
 
   @attribute_characters config
                         |> Map.values()
@@ -26,7 +27,8 @@ defmodule GuessWho.Attributes do
                           end)
                         end)
 
-  @character_attribute_lookup Enum.reduce(@character_attributes, %{}, fn {character, attributes}, acc ->
+  @character_attribute_lookup Enum.reduce(@character_attributes, %{}, fn {character, attributes},
+                                                                         acc ->
                                 lookup =
                                   attributes
                                   |> Enum.map(&{&1, true})
@@ -73,7 +75,8 @@ defmodule GuessWho.Attributes do
     {:name_looks_like?, Regex.match?(query, character)}
   end
 
-  defp matches?(character, <<first_letter :: binary-size(1)>> <> _rest = query) when first_letter >= "A" and first_letter <= "Z" do
+  defp matches?(character, <<first_letter::binary-size(1)>> <> _rest = query)
+       when first_letter >= "A" and first_letter <= "Z" do
     {:name_guessed?, character == query}
   end
 

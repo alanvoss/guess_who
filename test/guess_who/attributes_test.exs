@@ -5,31 +5,74 @@ defmodule GuessWho.AttributesTest do
 
   describe "characters" do
     test "returns a list of all characters" do
-      assert Enum.sort(Attributes.characters()) == Enum.sort(
-        ["Alex", "Alfred", "Anita", "Anne", "Bernard", "Bill", "Charles", "Claire",
-         "David", "Eric", "Frans", "George", "Herman", "Joe", "Maria", "Max", "Paul",
-         "Peter", "Philip", "Richard", "Robert", "Sam", "Susan", "Tom"]
-      )
+      assert Enum.sort(Attributes.characters()) ==
+               Enum.sort([
+                 "Alex",
+                 "Alfred",
+                 "Anita",
+                 "Anne",
+                 "Bernard",
+                 "Bill",
+                 "Charles",
+                 "Claire",
+                 "David",
+                 "Eric",
+                 "Frans",
+                 "George",
+                 "Herman",
+                 "Joe",
+                 "Maria",
+                 "Max",
+                 "Paul",
+                 "Peter",
+                 "Philip",
+                 "Richard",
+                 "Robert",
+                 "Sam",
+                 "Susan",
+                 "Tom"
+               ])
     end
   end
 
   describe "attributes" do
     test "returns a list of all attributes" do
-      assert Enum.sort(Attributes.attributes()) == Enum.sort(
-        ["bald", "beard", "big mouth", "big nose", "black hair", "blond hair",
-         "blonde hair", "blue eyes", "brown hair", "curly hair", "ear rings",
-         "earrings", "female", "ginger hair", "glasses", "hair partition", "hair stuff",
-         "hat", "long hair", "male", "moustache", "mustache", "red cheeks", "red hair",
-         "sad looking", "white hair"]
-      )
+      assert Enum.sort(Attributes.attributes()) ==
+               Enum.sort([
+                 "bald",
+                 "beard",
+                 "big mouth",
+                 "big nose",
+                 "black hair",
+                 "blond hair",
+                 "blonde hair",
+                 "blue eyes",
+                 "brown hair",
+                 "curly hair",
+                 "ear rings",
+                 "earrings",
+                 "female",
+                 "ginger hair",
+                 "glasses",
+                 "hair partition",
+                 "hair stuff",
+                 "hat",
+                 "long hair",
+                 "male",
+                 "moustache",
+                 "mustache",
+                 "red cheeks",
+                 "red hair",
+                 "sad looking",
+                 "white hair"
+               ])
     end
   end
 
   describe "character_attributes" do
     test "when passed a valid character name, return all character attributes" do
-      assert Enum.sort(Attributes.character_attributes("George")) == Enum.sort(
-        ["hat", "hair stuff", "white hair", "big mouth", "sad looking", "male"]
-      )
+      assert Enum.sort(Attributes.character_attributes("George")) ==
+               Enum.sort(["hat", "hair stuff", "white hair", "big mouth", "sad looking", "male"])
     end
 
     test "when passed an invalid character name, return empty list" do
@@ -51,7 +94,14 @@ defmodule GuessWho.AttributesTest do
   describe "characters_with_attribute" do
     test "when passed a valid attribute name, return all characters with that attribute" do
       assert Attributes.characters_with_attribute("smelly") == []
-      assert Attributes.characters_with_attribute("bald") == ["Bill", "Herman", "Richard", "Sam", "Tom"]
+
+      assert Attributes.characters_with_attribute("bald") == [
+               "Bill",
+               "Herman",
+               "Richard",
+               "Sam",
+               "Tom"
+             ]
     end
   end
 

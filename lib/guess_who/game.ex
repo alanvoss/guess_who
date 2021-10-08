@@ -6,10 +6,25 @@ defmodule GuessWho.Game do
 
   @type outcome() :: :success | :failure
 
-  @type t(contender, character, turns, outcome) :: %__MODULE__{contender: contender, character: character, turns: turns, outcome: outcome}
-  @type t :: %__MODULE__{contender: %GuessWho.Contender{}, character: Attributes.character(), turns: [GuessWho.Turn.t()], outcome: outcome()}
+  @type t(contender, character, turns, outcome) :: %__MODULE__{
+          contender: contender,
+          character: character,
+          turns: turns,
+          outcome: outcome
+        }
+  @type t :: %__MODULE__{
+          contender: %GuessWho.Contender{},
+          character: Attributes.character(),
+          turns: [GuessWho.Turn.t()],
+          outcome: outcome()
+        }
 
-  @spec new(GuesWho.Contender.t(), GuessWho.Attributes.character(), [GuessWho.Turn.t()], outcome()) :: t()
+  @spec new(
+          GuesWho.Contender.t(),
+          GuessWho.Attributes.character(),
+          [GuessWho.Turn.t()],
+          outcome()
+        ) :: t()
   def new(contender, character, turns, outcome) do
     %__MODULE__{contender: contender, character: character, turns: turns, outcome: outcome}
   end
