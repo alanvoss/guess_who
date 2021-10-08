@@ -41,12 +41,10 @@ defmodule GuessWho.Contender do
   def all_player_modules() do
     {:ok, modules} = :application.get_key(:guess_who, :modules)
 
-    Enum.filter(
-      modules,
-      &String.starts_with?(
-        Atom.to_string(&1),
-        "Elixir.GuessWho.Contenders"
-      )
+    Enum.filter(modules,
+      fn m ->
+        __MODULE__ in (m.__info__(:attributes)[:behaviour] || [])
+      end
     )
   end
 end
