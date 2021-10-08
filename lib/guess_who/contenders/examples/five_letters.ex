@@ -40,7 +40,7 @@ defmodule GuessWho.Contenders.Examples.FiveLetters do
   defp remaining_characters({:name_looks_like?, true}, _) do
     Enum.filter(
       Attributes.characters(),
-      &(Regex.match?(@five_char_regex, &1))
+      &Regex.match?(@five_char_regex, &1)
     )
   end
 

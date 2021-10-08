@@ -7,7 +7,7 @@ defmodule GuessWho.Engine do
   def score_all_contenders() do
     modules = Contender.all_player_modules()
 
-    names = Enum.map(modules, &(&1.name))
+    names = Enum.map(modules, & &1.name)
 
     scores =
       modules
@@ -17,7 +17,8 @@ defmodule GuessWho.Engine do
     Enum.zip(names, scores)
   end
 
-  @spec score_contender(Contender.t() | Atom.t()) :: {[Game.t()], %{Attribute.character() => Integer.t()}, Integer.t()}
+  @spec score_contender(Contender.t() | Atom.t()) ::
+          {[Game.t()], %{Attribute.character() => Integer.t()}, Integer.t()}
   def score_contender(contender) do
     contender = get_contender(contender)
     game_logs = match_contender_against_all_characters(contender)
@@ -70,8 +71,10 @@ defmodule GuessWho.Engine do
 
   defp get_contender(%Contender{} = contender), do: contender
   defp get_contender(contender) when is_atom(contender), do: Contender.new(contender)
+
   defp get_contender("Elixir." <> _contender = module_string) do
     module_string |> String.to_atom() |> get_contender()
   end
+
   defp get_contender(contender), do: get_contender("Elixir." <> contender)
 end

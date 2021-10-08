@@ -21,7 +21,7 @@ defmodule GuessWho.ContendersTest do
             cond do
               is_struct(query, Regex) -> true
               query in Attributes.characters() -> true
-              query  in Attributes.attributes() -> true
+              query in Attributes.attributes() -> true
               true -> false
             end
 
